@@ -1,0 +1,36 @@
+.wrap {
+    display: grid;
+    width: 100%;
+    min-height: 100%;
+    background: whitesmoke;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px 10px;
+}
+
+.post-card {
+    border: 2px solid crimson;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.users-box {
+    display: grid;
+    width: 100%;
+    min-height: 100%;
+    background: whitesmoke;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px 10px;
+}
+
+.user-block {
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: antiquewhite;
+}
+
+.user- {
+    /*color: crimson;*/
+}
