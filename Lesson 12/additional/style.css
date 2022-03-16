@@ -1,0 +1,23 @@
+
+.wrapper {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.userData {
+    border: 2px solid black;
+    background-color: darkseagreen;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    min-height: 300px;
+}
