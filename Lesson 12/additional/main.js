@@ -52,11 +52,11 @@ fetch('https://jsonplaceholder.typicode.com/users')
                                 commentBtn.classList.add('button')
                                 commentBtn.innerText = 'Check comments'
                                 commentBtn.onclick = (x) => {
-                                    fetch('https://jsonplaceholder.typicode.com/users/' + user.id +  postItem.userId + '/comments')
+                                    fetch('https://jsonplaceholder.typicode.com/users/' +  postItem.userId + '/comments')
                                         .then((post) => post.json())
                                         .then(comments => {
                                             for (const commentItem of comments) {
-                                                if (userID.id === postItem.userId && postItem.userId === commentItem.postId) {
+                                                if (postItem.id === commentItem.postId) {
                                                     let commentCard = document.createElement('div');
                                                     commentCard.classList.add('commentCard')
                                                     commentCard.innerHTML = `
@@ -65,6 +65,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
                                                         <h2>Email: ${commentItem.email} </h2> 
                                                         <p>Body: ${commentItem.body}</p> <hr>`
                                                     userPost.appendChild(commentCard)
+                                                    console.log()
                                                 }
                                             }
                                         })

@@ -29,12 +29,15 @@
 
 // - Создайте меню, которое раскрывается/сворачивается при клике
 
-// ?????
-// document.getElementsByClassName('menu')
-// let btn = document.getElementsByClassName('btn')
-// let list = document.getElementsByClassName('list')
+
+// let btn = document.getElementById('btn')
+// // let list = document.getElementsByClassName('list')
+// let menu = document.getElementById('menu')
 // btn.onclick =  (e) => {
-// list.hidden = true
+// menu.hidden = true
+//     btn.onclick = () => {
+//         menu.hidden = false
+//     }
 // };
 
 
