@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User-details.html</title>
+    <style>
+        .user-details {
+            background-color: #558080;
+        }
+
+        .posts {
+            background-color: whitesmoke;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .post {
+            margin: 10px;
+            background-color: palegoldenrod;
+            width: 100px;
+            margin-left: calc(10% - 50px);
+            margin-right: calc(10% - 50px);
+        }
+
+        .post_details_btn {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+<div class="user-details"></div>
+<div class="posts"></div>
+<button class="post_details_btn">show all posts</button>
+<script>
+    let url = new URL(location.href)
+    let user = JSON.parse(url.searchParams.get('data'));
+    let userDetails = document.getElementsByClassName('user-details')[0];
+    let postsSection = document.getElementsByClassName('posts')[0];
+    let post_details_btn = document.getElementsByClassName('post_details_btn')[0];
+    userDetails.innerHTML = `
+                <h3>Name: ${user.name}</h3>
+                <h4>Username: ${user.username}</h4>
+                <h4>Email: ${user.email}</h4>
+                <div>
+                Adress: ${user.name}
+                    <h5><u>street</u>: ${user.address.street}</h5>
+                    <h5><u>suite</u>: ${user.address.suite}</h5>
+                    <h5><u>city</u>: ${user.address.city}</h5>
+                    <h5><u>zipcode</u>: ${user.address.zipcode}</h5>
+                    <h5> <u>geo</u>: <p>lat: ${user.address.geo.lat}</p> <p>lng: ${user.address.geo.lng}</p></h5>
+                </div>
+                    <h5><u>phone</u>: ${user.phone}</h5>
+                    <h5><u>website</u> ${user.website}</h5>
+                    <h5><u>company</u>: <p>${user.company.name}</p> <p>${user.company.catchPhrase}</p> <p>${user.company.bs}</p> </h5>
+                `
+    post_details_btn.onclick = () => {
+        fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`)
+            .then((value) => value.json())
+            .then(data => {
+                for (const postItem of data) {
+                    let postSection = document.createElement('div');
+                    postSection.classList.add('post')
+                    postSection.innerText = postItem.title
+                    postsSection.appendChild(postSection)
+                    let postBtn = document.createElement('button');
+                    postBtn.innerText = 'post details'
+
+                    postBtn.onclick = () => {
+                        location.href = `./post-details.html?dataPost=${JSON.stringify(postItem)}`
+                    }
+
+                    postSection.appendChild(postBtn)
+                    postsSection.appendChild(postSection)
+                }
+            })
+    }
+    userDetails.appendChild(post_details_btn)
+
+</script>
+</body>
+</html>

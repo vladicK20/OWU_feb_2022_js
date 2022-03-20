@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post-details.html</title>
+    <style>
+        .post {
+            background-color: cornflowerblue;
+        }
+        .comments {
+            background-color: palegoldenrod;
+        }
+    </style>
+</head>
+<body>
+<div class="post"></div>
+<ol class="comments"></ol>
+<script>
+
+    let url = new URL(location.href)
+    let post = JSON.parse(url.searchParams.get('dataPost'));
+    console.log(post)
+    let postSection = document.getElementsByClassName('post')[0];
+    postSection.innerHTML =
+                    `<h2>Id - ${post.id}</h2>
+                    <h3>Name: ${post.title}</h3>
+                    <p>Body: ${post.body}</p>`
+
+let commentsSection = document.getElementsByClassName('comments')[0];
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
+    .then((value) => value.json())
+    .then(data => {
+        for (commentItem of data) {
+            let commentSection = document.createElement('li');
+            commentSection.innerText = commentItem.body
+            commentsSection.appendChild(commentSection)
+        }
+    })
+
+
+
+</script>
+</body>
+</html>
